@@ -36,18 +36,30 @@
   var trips = document.getElementById('trips');
   var tripscene = document.getElementById('tripscene');
   var tstage = tripscene && tripscene.querySelector('.tstage');
-  var base = 0, busyUntil = 0, ownLeft = trips ? trips.scrollLeft : 0;
+  var busyUntil = 0, ownLeft = trips ? trips.scrollLeft : 0;
   var drag = null;
   var P = D.pointer;
+  // Where the visitor's own hand last left the row: how far through the hold the page was (p, 0 to 1) and where the row stood (x).
+  var A = { p: 0, x: 0 };
 
   function near(r, vh) { return r.bottom > -200 && r.top < vh + 200; }
   function busy() { busyUntil = performance.now() + 1400; }
-  // How far the page's own movement has carried the row: the scene holds, and the hold takes the row
-  // from its first card to its last. It depends only on where the scene sits on the screen.
-  function slideNow() {
+  // How far through the hold the page is, 0 to 1. It depends only on where the scene sits on the screen.
+  function progressNow() {
     var sc = tripscene.getBoundingClientRect();
-    return clamp(-sc.top / Math.max(1, sc.height - tstage.offsetHeight)) * (trips.scrollWidth - trips.clientWidth);
+    return clamp(-sc.top / Math.max(1, sc.height - tstage.offsetHeight));
   }
+  // Where the row belongs at that point. Untouched, it runs evenly from its first card to its last. After a swipe it
+  // runs from where the hand left it to the last card over what is left of the hold (and back to the first card over
+  // what came before), so the row arrives at its end as the page moves on, and the page never waits for a row that
+  // has already finished. One limit: it never runs faster than two and a half times its usual pace. If the hand
+  // leaves it far from the end with little of the hold left, it keeps that calm pace and the page simply moves on.
+  function rowAt(p) {
+    var max = trips.scrollWidth - trips.clientWidth, fastest = max * 2.5;
+    if (p >= A.p) return Math.min(max, A.x + Math.min((max - A.x) / Math.max(1e-6, 1 - A.p), fastest) * (p - A.p));
+    return Math.max(0, A.x - Math.min(A.x / Math.max(1e-6, A.p), fastest) * (A.p - p));
+  }
+  function anchor() { A = { p: progressNow(), x: trips.scrollLeft }; }
   // The hold is as long as the row needs: on a laptop 1 px of scroll moves the row 1.5 px, on a phone 1.4 px.
   function layoutTrips() {
     if (!tripscene) return;
@@ -102,14 +114,13 @@
       }
     }
 
-    // The trips row: `base` is where the visitor's own hand last left it.
+    // The trips row. While a hand is on it (and for a moment after) the script only takes note of where it is.
     if (trips) {
-      var slide = slideNow();
       if (performance.now() > busyUntil) {
-        var want = Math.max(0, Math.round(base + slide));
+        var want = Math.max(0, Math.round(rowAt(progressNow())));
         if (Math.abs(trips.scrollLeft - want) >= 1) { trips.scrollLeft = want; ownLeft = trips.scrollLeft; }
       } else {
-        base = trips.scrollLeft - slide;
+        anchor();
       }
     }
   });
@@ -118,7 +129,7 @@
     // The row tells us when someone else moved it (a swipe, a drag, the arrows): then the script lets go for a moment
     // and remembers the new place. A thumb resting on a card while the page scrolls is not a swipe, so touches alone never pause it.
     trips.addEventListener('scroll', function () {
-      if (Math.abs(trips.scrollLeft - ownLeft) > 2) { busy(); if (!D.still) base = trips.scrollLeft - slideNow(); }
+      if (Math.abs(trips.scrollLeft - ownLeft) > 2) { busy(); if (!D.still) anchor(); }
       ownLeft = trips.scrollLeft;
     }, { passive: true });
     trips.addEventListener('keydown', busy);
@@ -161,7 +172,7 @@
 
   function settle() {
     layoutTrips();
-    if (trips && !D.still) base = trips.scrollLeft - slideNow();
+    if (trips && !D.still) anchor();
   }
   D.onStill(function (on) {
     if (on) {
