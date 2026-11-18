@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0F2140">
+<title>Homepage (prototype)</title>
+<link rel="icon" href="logo/mark-navy.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400..600&family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&display=swap">
+<link rel="stylesheet" href="css/system.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the page</a>
+
+<div class="proto dark">
+  <div class="wrap">
+    <span class="stamp"><i></i><span>Prototype</span></span>
+    <a href="index.html">Start</a>
+    <a href="home.html" aria-current="page">Homepage</a>
+    <a href="trip.html">Trip page</a>
+    <span class="sw">
+      <button type="button" id="stillBtn" aria-pressed="false">Motion is on</button>
+      <button type="button" id="smoothBtn" class="only-fine" aria-pressed="false">Smooth scrolling is off</button>
+    </span>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="home.html" aria-label="Detox Hospitality, homepage"><img src="logo/logo-navy-600.png" alt="Detox Hospitality" width="600" height="306"></a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="#tripscene">Trips</a>
+      <a href="#main" data-inert="Places are not part of the prototype.">Places</a>
+      <a href="#main" data-inert="Guides are not part of the prototype.">Guides</a>
+      <a href="#main" data-inert="About is not part of the prototype.">About</a>
+    </nav>
+    <div class="head-acts">
+      <button class="btn btn-primary small" type="button" data-inert="On the live site this opens the enquiry form.">Enquire</button>
+      <button class="btn btn-icon menu-btn" type="button" aria-label="Menu" data-inert="The menu is not part of the prototype."><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7h14M3 13h14"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="video-slot dark" aria-label="The place of the homepage video">
+    <div>
+      <span class="stamp on-photo"><i></i><span>The homepage video</span><span class="m">Not part of this prototype</span></span>
+      <p>The video stays exactly as it is on the live site. The new parts begin below it.</p>
+    </div>
+  </section>
+
+  <section class="wrap ink" id="ink">
+    <span class="stamp"><i></i><span>Kashmir</span><span class="m">Winter 2026–27</span></span>
+    <p>A slow morning on Dal Lake. A day in the Gulmarg snow. A warm room waiting when you come back.</p>
+  </section>
+
+  <section class="album" id="album" aria-label="Kashmir through the year">
+    <div class="stage">
+      <h2 class="big">Kashmir, slowly.</h2>
+      <div class="frames">
+        <figure class="ph">
+          <div class="pic"><img src="img/year-winter.jpg" alt="A small red hut under snow-laden fir trees in Gulmarg" width="960" height="1280" draggable="false"></div>
+          <figcaption><span class="stamp"><i></i><span>Winter</span><span class="m">Mid-January to February</span></span><b>Deep snow under the firs in Gulmarg.</b></figcaption>
+        </figure>
+        <figure class="ph">
+          <div class="pic"><img src="img/year-spring.jpg" alt="Red tulips in close-up with hills behind, Srinagar" width="960" height="1280" draggable="false"></div>
+          <figcaption><span class="stamp"><i></i><span>Spring</span><span class="m">Late March and April</span></span><b>Tulips in Srinagar.</b></figcaption>
+        </figure>
+        <figure class="ph">
+          <div class="pic"><img src="img/year-summer.jpg" alt="A carved wooden houseboat and its reflection in still water" width="960" height="1280" draggable="false"></div>
+          <figcaption><span class="stamp"><i></i><span>Summer</span><span class="m">June to August</span></span><b>Houseboat mornings on still water.</b></figcaption>
+        </figure>
+        <figure class="ph">
+          <div class="pic"><img src="img/year-autumn.jpg" alt="A shikara on still water framed by red chinar leaves" width="960" height="1280" draggable="false"></div>
+          <figcaption><span class="stamp"><i></i><span>Autumn</span><span class="m">October and early November</span></span><b>Chinar leaves turn red over the water.</b></figcaption>
+        </figure>
+      </div>
+      <span class="count fact" id="albumCount" aria-hidden="true">01 / 04</span>
+    </div>
+  </section>
+
+  <section class="tripscene" id="tripscene" aria-label="Winter trips">
+    <div class="tstage">
+      <div class="wrap">
+        <div class="trips-head">
+          <div class="stack" style="gap: 10px">
+            <span class="stamp"><i></i><span>Winter 2026–27</span><span class="m">11 trips</span></span>
+            <h2 class="d-section">Winter trips</h2>
+          </div>
+          <div class="arrows">
+            <button class="btn btn-icon" type="button" id="tripsPrev" aria-label="Earlier trips"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M16 10H4M9 5l-5 5 5 5"/></svg></button>
+            <button class="btn btn-icon" type="button" id="tripsNext" aria-label="More trips"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10h12M11 5l5 5-5 5"/></svg></button>
+          </div>
+        </div>
+      </div>
+      <div class="trips" id="trips" tabindex="0" role="group" aria-label="Winter trips. Swipe or use the arrow buttons to see more.">
+        <a class="trip" href="trip.html" data-label="View trip">
+          <span class="shot"><img src="img/card-1.jpg" alt="One shikara on glassy water among bare winter trees" width="720" height="900" draggable="false" loading="lazy"><span class="tag">View trip</span></span>
+          <h3 class="t-small">Kashmir Snow Weekend</h3>
+          <span class="places"><span>Srinagar</span><span>Gulmarg</span></span>
+          <span class="tfoot"><span class="len">2 nights, 3 days</span><span class="price">From ₹8,799<small>per person</small></span></span>
+        </a>
+        <a class="trip" href="#tripscene" data-label="View trip" data-inert="Only the Kashmir Snow Weekend has a page in this prototype.">
+          <span class="shot"><img src="img/card-2.jpg" alt="A hut and a lone tree on a snow meadow at blue hour" width="720" height="900" draggable="false" loading="lazy"><span class="tag">View trip</span></span>
+          <h3 class="t-small">Pick Your Snow Night</h3>
+          <span class="places"><span>Srinagar</span><span>Pahalgam</span><span>Gulmarg</span></span>
+          <span class="tfoot"><span class="len">3 nights, 4 days</span><span class="price">From ₹11,999<small>per person</small></span></span>
+        </a>
+        <a class="trip" href="#tripscene" data-label="View trip" data-inert="Only the Kashmir Snow Weekend has a page in this prototype.">
+          <span class="shot"><img src="img/card-3.jpg" alt="A snowfield at sunset under orange cloud" width="720" height="900" draggable="false" loading="lazy"><span class="tag">View trip</span></span>
+          <h3 class="t-small">Kashmir Honeymoon</h3>
+          <span class="places"><span>Srinagar</span><span>Gulmarg</span><span>Pahalgam</span><span>Sonamarg</span></span>
+          <span class="tfoot"><span class="len">4 nights, 5 days</span><span class="price">From ₹34,099<small>per couple</small></span></span>
+        </a>
+        <a class="trip" href="#tripscene" data-label="View trip" data-inert="Only the Kashmir Snow Weekend has a page in this prototype.">
+          <span class="shot"><img src="img/card-4.jpg" alt="Houseboats on the water below snow-dusted mountains" width="720" height="900" draggable="false" loading="lazy"><span class="tag">View trip</span></span>
+          <h3 class="t-small">Kashmir Winter Essentials</h3>
+          <span class="places"><span>Srinagar</span><span>Gulmarg</span><span>Pahalgam</span><span>Sonamarg</span></span>
+          <span class="tfoot"><span class="len">4 nights, 5 days</span><span class="price">From ₹15,199<small>per person</small></span></span>
+        </a>
+        <a class="trip" href="#tripscene" data-label="View trip" data-inert="Only the Kashmir Snow Weekend has a page in this prototype.">
+          <span class="shot"><img src="img/card-5.jpg" alt="Fresh snow below jagged peaks near Sonamarg" width="720" height="900" draggable="false" loading="lazy"><span class="tag">View trip</span></span>
+          <h3 class="t-small">Classic Kashmir Winter Circuit</h3>
+          <span class="places"><span>Srinagar</span><span>Sonamarg</span><span>Gulmarg</span><span>Pahalgam</span></span>
+          <span class="tfoot"><span class="len">6 nights, 7 days</span><span class="price">From ₹24,199<small>per person</small></span></span>
+        </a>
+        <a class="trip" href="#tripscene" data-label="View trip" data-inert="Only the Kashmir Snow Weekend has a page in this prototype.">
+          <span class="shot"><img src="img/card-6.jpg" alt="A stream winding through deep snow on a meadow" width="720" height="900" draggable="false" loading="lazy"><span class="tag">View trip</span></span>
+          <h3 class="t-small">Learn to Ski in Gulmarg</h3>
+          <span class="places"><span>Gulmarg</span></span>
+          <span class="tfoot"><span class="len">4 nights, 5 days</span><span class="price">From ₹29,999<small>per skier</small></span></span>
+        </a>
+        <a class="trip all" href="#tripscene" data-label="See all" data-inert="The list of all trips is not part of the prototype.">
+          <span class="shot"><span>All eleven winter trips</span></span>
+          <span class="places"><span>From 2 to 6 nights</span></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="how">
+    <div class="wrap">
+      <div class="head">
+        <span class="stamp" data-reveal><i></i><span>How it works</span><span class="m">Three steps</span></span>
+        <h2 class="d-section" data-reveal="lines">From a message to a booked trip</h2>
+      </div>
+      <ol class="steps" data-reveal>
+        <li><span class="n">01</span><b>Tell us your dates</b><p>Three taps and two fields. No payment is needed to enquire.</p></li>
+        <li><span class="n">02</span><b>Get a written quote</b><p>It gives the exact price for your dates, hotels and group.</p></li>
+        <li><span class="n">03</span><b>Pay 50% to confirm</b><p>The rest is due 30 days before you travel.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec band dark">
+    <div class="wrap">
+      <div class="head" style="margin-bottom: 0">
+        <span class="stamp on-photo" data-reveal><i></i><span>Enquire</span><span class="m">No payment needed</span></span>
+        <h2 class="d-section" data-reveal>Tell us your dates.<br>We reply with a written quote.</h2>
+        <div class="rowx" data-reveal>
+          <button class="btn btn-photo" type="button" data-inert="On the live site this opens the enquiry form.">Enquire</button>
+          <button class="btn btn-wa" type="button" data-inert="On the live site this opens WhatsApp."><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.829 1.783 6.858L2 30l7.338-1.762A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Zm7.406 19.594c-.308.867-1.52 1.587-2.5 1.796-.665.14-1.533.252-4.455-.957-3.738-1.527-6.148-5.33-6.334-5.576-.18-.246-1.506-2.008-1.506-3.828 0-1.82.953-2.71 1.29-3.08a1.36 1.36 0 0 1 .985-.462c.246 0 .491.005.706.014.227.01.531-.086.831.634.308.738 1.048 2.558 1.14 2.743.092.185.153.4.03.646-.12.246-.18.4-.358.615-.18.215-.378.48-.539.644-.18.18-.367.376-.158.737.21.36.93 1.533 1.996 2.483 1.372 1.222 2.53 1.6 2.889 1.78.358.18.567.154.776-.092.215-.246.92-1.075 1.165-1.443.246-.368.491-.308.831-.185.34.123 2.157 1.018 2.527 1.203.37.185.615.277.706.43.092.154.092.893-.216 1.76Z"/></svg>WhatsApp us</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot dark">
+  <div class="wrap">
+    <img src="logo/logo-white-600.png" alt="Detox Hospitality" width="600" height="306" loading="lazy">
+    <p>A prototype of the homepage's new parts, made for testing. It is not the live site, it sends nothing, and search engines are asked not to list it.</p>
+    <p><a href="index.html">What to try on this prototype</a></p>
+  </div>
+</footer>
+
+<div class="ptag" id="ptag" aria-hidden="true"><span>View trip</span></div>
+
+<script src="js/site.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

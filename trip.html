@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0F2140">
+<title>Kashmir Snow Weekend (prototype)</title>
+<link rel="icon" href="logo/mark-navy.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:opsz,wght@9..40,400..600&family=Fraunces:ital,opsz,wght@0,9..144,300..500;1,9..144,300..500&display=swap">
+<link rel="stylesheet" href="css/system.css">
+</head>
+<body class="has-bar">
+<a class="skip" href="#main">Skip to the page</a>
+
+<div class="proto dark">
+  <div class="wrap">
+    <span class="stamp"><i></i><span>Prototype</span></span>
+    <a href="index.html">Start</a>
+    <a href="home.html">Homepage</a>
+    <a href="trip.html" aria-current="page">Trip page</a>
+    <span class="sw">
+      <button type="button" id="stillBtn" aria-pressed="false">Motion is on</button>
+      <button type="button" id="smoothBtn" class="only-fine" aria-pressed="false">Smooth scrolling is off</button>
+    </span>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="logo" href="home.html" aria-label="Detox Hospitality, homepage"><img src="logo/logo-navy-600.png" alt="Detox Hospitality" width="600" height="306"></a>
+    <nav class="site-nav" aria-label="Main">
+      <a href="home.html#tripscene" aria-current="page">Trips</a>
+      <a href="#main" data-inert="Places are not part of the prototype.">Places</a>
+      <a href="#main" data-inert="Guides are not part of the prototype.">Guides</a>
+      <a href="#main" data-inert="About is not part of the prototype.">About</a>
+    </nav>
+    <div class="head-acts">
+      <a class="btn btn-primary small" href="#enquire">Enquire</a>
+      <button class="btn btn-icon menu-btn" type="button" aria-label="Menu" data-inert="The menu is not part of the prototype."><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 7h14M3 13h14"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap" style="padding-block: 4px 16px">
+    <p class="meta"><a href="home.html#tripscene">Trips</a> / <span style="color: var(--navy)">Kashmir Snow Weekend</span></p>
+  </div>
+  <div class="wrap">
+    <figure class="opener shot shade framed">
+      <picture>
+        <source media="(min-width: 640px)" srcset="img/open-wide.jpg" width="1600" height="900">
+        <img src="img/open-tall.jpg" alt="People and tents on a wide snow slope in Gulmarg, with sledge tracks and pines above" width="1000" height="1250" fetchpriority="high">
+      </picture>
+      <span class="brackets" aria-hidden="true"></span>
+      <figcaption class="stamp on-photo"><i></i><span>Gulmarg</span><span class="m">2,650 m</span></figcaption>
+    </figure>
+  </div>
+
+  <section class="sec" style="padding-top: 32px">
+    <div class="wrap trip-top">
+      <div class="stack" style="gap: 20px">
+        <span class="stamp"><i></i><span>2 nights, 3 days</span><span class="m">Srinagar</span><span class="m">Gulmarg</span></span>
+        <h1 class="t-page">Kashmir Snow Weekend</h1>
+        <p class="lede">Two nights in Srinagar and a day in the Gulmarg snow: Kashmir in a long weekend.</p>
+        <ul class="hl" style="margin-top: 8px">
+          <li>A full day in the Gulmarg snow, with the gondola, a sledge or a ski taster if you like.</li>
+          <li>A sunset shikara ride on Dal Lake on your first evening.</li>
+          <li>Heated rooms and a private car with a heater, so the cold stays outside.</li>
+          <li>3-star and Luxury: your second night is on a carved cedar houseboat.</li>
+        </ul>
+        <dl class="facts" style="margin-top: 12px">
+          <div><dt>Start and end</dt><dd>Srinagar airport or railway station</dd></div>
+          <div><dt>Trip type</dt><dd>Private tour. Your group only, from 2 people</dd></div>
+          <div><dt>Fitness</dt><dd><span class="meter" aria-hidden="true"><i class="f"></i><i></i><i></i><i></i><i></i></span>Easy. Sightseeing with some 2–3 hour drives. Paths can be icy, so bring shoes with a good grip</dd></div>
+          <div><dt>Best time</dt><dd>1 November to 31 March. Snow is most likely from late December to February</dd></div>
+          <div><dt>Stays</dt><dd>Night 1 in a hotel in Srinagar. Night 2 in a hotel, or on a Dal Lake houseboat at 3-star and Luxury</dd></div>
+        </dl>
+      </div>
+      <aside class="price-card" aria-label="Price of the Kashmir Snow Weekend" data-bar-hide>
+        <span class="cap">From</span>
+        <span class="amount js-price">₹8,799</span>
+        <p class="meta">per person, two sharing a room<br>Includes 5% GST</p>
+        <div class="rowx" role="group" aria-label="Hotel level" id="tiers">
+          <button class="chip" type="button" aria-pressed="true" data-price="8799" data-stay="Heated budget hotel in Srinagar, both nights">Budget</button>
+          <button class="chip" type="button" aria-pressed="false" data-price="10599" data-stay="3-star hotel, then a deluxe houseboat">3-star</button>
+          <button class="chip" type="button" aria-pressed="false" data-price="19299" data-stay="4-star hotel, then a top-category houseboat">Luxury</button>
+        </div>
+        <p class="meta" id="stay" style="color: var(--text)" aria-live="polite">Heated budget hotel in Srinagar, both nights</p>
+        <a class="btn btn-primary full" href="#enquire">Enquire</a>
+        <button class="btn btn-wa full" type="button" data-inert="On the live site this opens WhatsApp with the trip's name already written."><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.829 1.783 6.858L2 30l7.338-1.762A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Zm7.406 19.594c-.308.867-1.52 1.587-2.5 1.796-.665.14-1.533.252-4.455-.957-3.738-1.527-6.148-5.33-6.334-5.576-.18-.246-1.506-2.008-1.506-3.828 0-1.82.953-2.71 1.29-3.08a1.36 1.36 0 0 1 .985-.462c.246 0 .491.005.706.014.227.01.531-.086.831.634.308.738 1.048 2.558 1.14 2.743.092.185.153.4.03.646-.12.246-.18.4-.358.615-.18.215-.378.48-.539.644-.18.18-.367.376-.158.737.21.36.93 1.533 1.996 2.483 1.372 1.222 2.53 1.6 2.889 1.78.358.18.567.154.776-.092.215-.246.92-1.075 1.165-1.443.246-.368.491-.308.831-.185.34.123 2.157 1.018 2.527 1.203.37.185.615.277.706.43.092.154.092.893-.216 1.76Z"/></svg>WhatsApp us</button>
+        <p class="meta">No payment needed to enquire. You get a written quote first.</p>
+        <hr>
+        <p class="meta">Pay 50% to confirm, the rest 30 days before you travel.</p>
+        <p class="micro">Starting prices for travel from 1 November 2026 to 31 March 2027. From 20 December to 5 January the Christmas–New Year price applies: from ₹9,599. Four people sharing one car and two rooms pay from ₹6,299 each at the Budget level. Your written quote gives the exact price for your dates, hotels and group.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec" id="days">
+    <div class="wrap">
+      <div class="head">
+        <span class="stamp" data-reveal><i></i><span>Day by day</span><span class="m">3 days</span></span>
+        <h2 class="d-section" data-reveal="lines">Your three days</h2>
+        <p data-reveal>Follow the route on the map as you read.</p>
+      </div>
+      <div class="route" id="route">
+        <div class="rmap-col">
+          <figure class="rmap" id="routeMap">
+            <div class="rmap-head"><span class="stamp"><span id="rmDay">The whole trip</span><span class="m" id="rmTitle">3 days</span></span></div>
+            <div class="rmap-box" id="rmBox">
+              <button class="btn btn-icon rmap-btn" id="rmToggle" type="button" aria-label="Pause the route"><svg viewBox="0 0 14 14" aria-hidden="true"><path id="rmIcon" d="M3 2h3v10H3zM8 2h3v10H8z"/></svg></button>
+              <div class="rmap-svg"></div>
+            </div>
+          </figure>
+          <div class="rmap-foot">
+            <ul class="rmap-legend">
+              <li><svg width="26" height="10" aria-hidden="true"><path d="M2 5h22" class="key-route"/></svg>Your route</li>
+              <li><svg width="16" height="16" aria-hidden="true"><circle cx="8" cy="8" r="6" class="key-night"/></svg>Overnight stop</li>
+              <li><svg width="14" height="14" aria-hidden="true"><circle cx="7" cy="7" r="4.5" class="key-stop"/></svg>Place you visit</li>
+            </ul>
+            <p class="micro">A sketch map, not to scale. Places are approximate and borders aren't drawn. Rivers and lakes © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>.</p>
+          </div>
+        </div>
+        <div class="days">
+          <article class="day" data-day="0">
+            <span class="stamp"><i></i><span class="dn">Day 1</span><span class="m">About 15 km</span><span class="m">30–40 minutes</span></span>
+            <h3 class="t-card">Arrive in Srinagar</h3>
+            <figure class="shot" data-reveal="photo"><img src="img/day-dal-lake.jpg" alt="Shikara on Dal Lake below the snow-capped Zabarwan range" width="1400" height="934" loading="lazy"></figure>
+            <p>Your driver meets you at Srinagar airport or the railway station. After you've settled in, see the Mughal gardens of Nishat and Shalimar, laid out in terraces above Dal Lake in the 1600s: bare chinar trees in winter, and sometimes snow on the lawns. End the day with an hour on a shikara as the light goes over the Zabarwan hills.</p>
+            <dl class="facts">
+              <div><dt>Overnight</dt><dd>Srinagar, in a hotel</dd></div>
+              <div><dt>Meals</dt><dd>Dinner</dd></div>
+              <div><dt>Included</dt><dd>Pick-up at the airport or railway station, Nishat and Shalimar gardens, a sunset shikara ride on Dal Lake (1 hour)</dd></div>
+            </dl>
+            <p class="opt"><span class="cap">Optional, paid locally</span><br>A photo session in Kashmiri dress on a shikara, an old city craft walk (papier-mâché and pashmina).</p>
+          </article>
+          <article class="day" data-day="1">
+            <span class="stamp"><i></i><span class="dn">Day 2</span><span class="m">52 km each way</span><span class="m">About 2 hours</span></span>
+            <h3 class="t-card">Snow day in Gulmarg</h3>
+            <figure class="shot" data-reveal="photo"><img src="img/day-gulmarg.jpg" alt="Gulmarg at dusk in winter: snow-laden pines and a lit-up hotel below snowy ridges" width="1400" height="934" loading="lazy"></figure>
+            <p>Drive west through apple orchards to Tangmarg for a cup of kahwa, then up the winding road to Gulmarg, a bowl of snow at 2,650 m ringed by fir forest. Walk to St Mary's Church and the old Maharaja's palace, build a snowman, try a sledge, or ride the gondola towards Apharwat for views across the Pir Panjal range.</p>
+            <div class="notice"><b>On snow days</b><span>After heavy snow only 4x4s may drive the last stretch from Tangmarg. We arrange one if needed.</span></div>
+            <dl class="facts">
+              <div><dt>Overnight</dt><dd>Srinagar, in a hotel or on a houseboat</dd></div>
+              <div><dt>Meals</dt><dd>Breakfast, dinner</dd></div>
+              <div><dt>Included</dt><dd>A private car with a heater for the day, a kahwa stop in Tangmarg</dd></div>
+            </dl>
+            <p class="opt"><span class="cap">Optional, paid locally</span><br>The Gulmarg gondola (Phase 1 to Kongdoori, Phase 2 towards Apharwat), a snow 4x4 from Tangmarg on snow days, a 2-hour ski taster with an instructor, a sledge ride, a snowmobile or ATV ride, a pony ride, a snow coat and boots on hire.</p>
+          </article>
+          <article class="day" data-day="2">
+            <span class="stamp"><i></i><span class="dn">Day 3</span><span class="m">25 km</span><span class="m">About an hour with the stops</span></span>
+            <h3 class="t-card">Hazratbal, the old city and home</h3>
+            <figure class="shot" data-reveal="photo"><img src="img/day-hazratbal.jpg" alt="Hazratbal Shrine across the lake with snowy mountains behind" width="1400" height="934" loading="lazy"></figure>
+            <p>After breakfast, visit the white marble Hazratbal shrine on the shore of Dal Lake, then the old city's wooden Jamia Masjid on the way to your flight or train.</p>
+            <dl class="facts">
+              <div><dt>Meals</dt><dd>Breakfast</dd></div>
+              <div><dt>Included</dt><dd>Hazratbal and the old city on the way, a drop at the airport or railway station</dd></div>
+            </dl>
+            <p class="opt"><span class="cap">Optional, paid locally</span><br>A sunrise shikara to the floating market, an old city craft walk (papier-mâché and pashmina).</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap cols-2">
+      <div class="stack">
+        <span class="stamp" data-reveal><i></i><span>Included</span><span class="m">In the price</span></span>
+        <h2 class="t-section" data-reveal="lines">What your price covers</h2>
+        <ul class="ticks" data-reveal>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 9.5l3.5 3.5 7.5-8"/></svg>2 nights in Srinagar (3-star and Luxury: 1 hotel night and 1 houseboat night)</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 9.5l3.5 3.5 7.5-8"/></svg>Breakfast and dinner every day (2 breakfasts, 2 dinners)</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 9.5l3.5 3.5 7.5-8"/></svg>Heated rooms (a heater or an electric blanket in budget hotels)</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 9.5l3.5 3.5 7.5-8"/></svg>Private car with a heater and driver for every transfer and day out in the itinerary</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 9.5l3.5 3.5 7.5-8"/></svg>Pick-up and drop at Srinagar airport or railway station</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 9.5l3.5 3.5 7.5-8"/></svg>Sunset shikara ride on Dal Lake (1 hour)</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 9.5l3.5 3.5 7.5-8"/></svg>Fuel, tolls, parking and the driver's costs</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M3.5 9.5l3.5 3.5 7.5-8"/></svg>5% GST</li>
+        </ul>
+      </div>
+      <div class="stack">
+        <span class="stamp" data-reveal><i></i><span>Not included</span><span class="m">Paid by you</span></span>
+        <h2 class="t-section" data-reveal="lines">What it does not</h2>
+        <ul class="ticks no" data-reveal>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 5l8 8M13 5l-8 8"/></svg>Flights and train tickets to and from Srinagar</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 5l8 8M13 5l-8 8"/></svg>Lunches</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 5l8 8M13 5l-8 8"/></svg>Entry tickets (Mughal gardens, Betaab Valley)</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 5l8 8M13 5l-8 8"/></svg>Gulmarg gondola tickets, unless listed above</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 5l8 8M13 5l-8 8"/></svg>Local union taxis, ponies and sledges in Gulmarg, Pahalgam and Sonamarg</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 5l8 8M13 5l-8 8"/></svg>Activities you add to your trip</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 5l8 8M13 5l-8 8"/></svg>Travel insurance</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 5l8 8M13 5l-8 8"/></svg>Tips and personal expenses</li>
+          <li><svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 5l8 8M13 5l-8 8"/></svg>Snow 4x4 from Tangmarg on snow days</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap cols-2">
+      <div class="head" style="margin-bottom: 0">
+        <span class="stamp" data-reveal><i></i><span>Before you book</span><span class="m">Said plainly</span></span>
+        <h2 class="t-section" data-reveal="lines">Good to know before you decide</h2>
+        <div class="notice caution" data-reveal><b>The coldest weeks</b><span>The coldest weeks (Chillai Kalan) run from 21 December to about 30 January. Nights can drop well below freezing, so pack thermals, a warm jacket, gloves, a cap and waterproof shoes.</span></div>
+      </div>
+      <div data-reveal>
+        <details class="acc" open>
+          <summary>Is this trip right for you?</summary>
+          <ul><li>It's a short trip: day 2 is a full day out with about 2 hours' drive each way.</li><li>Want to sleep in the snow? Look at Pick Your Snow Night or Gulmarg Snow Stay.</li></ul>
+        </details>
+        <details class="acc">
+          <summary>Good to know</summary>
+          <ul><li>In Gulmarg, Pahalgam and Sonamarg some places can only be reached by local union taxis, ponies or snow 4x4s. We arrange them if you'd like and they go in your quote.</li><li>Prepaid SIM cards from outside Jammu &amp; Kashmir don't work here. Postpaid connections do.</li><li>Carry a government photo ID. Hotels ask for it, and it can be checked on the road.</li></ul>
+        </details>
+        <details class="acc">
+          <summary>Winter in Kashmir</summary>
+          <ul><li>Days are short: the sun sets around 5:30 pm in December and January, so we start early on day trips.</li><li>Snow can close roads for a few hours or a day. We keep you informed and swap the plan to whatever is open.</li><li>Morning fog can delay flights in December and January. An afternoon flight home gives you a cushion.</li></ul>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec enquire" id="enquire">
+    <div class="wrap cols-2">
+      <div class="head" style="margin-bottom: 0">
+        <span class="stamp"><i></i><span>Enquire</span><span class="m">Kashmir Snow Weekend</span></span>
+        <h2 class="d-section">Tell us your dates.<br>We reply with a written quote.</h2>
+        <p>Three taps and two fields. No payment is needed to enquire.</p>
+      </div>
+      <form class="form-card" id="enquiry" novalidate data-bar-hide>
+        <div id="step1" class="stack" style="gap: 24px">
+          <span class="cap" id="step1-cap" tabindex="-1">Step 1 of 2</span>
+          <div class="stack" style="gap: 10px">
+            <span class="lab" id="lab-when">When would you like to travel?</span>
+            <div class="rowx" role="group" aria-labelledby="lab-when" data-single>
+              <button class="chip" type="button" aria-pressed="false">Nov</button>
+              <button class="chip" type="button" aria-pressed="false">Dec</button>
+              <button class="chip" type="button" aria-pressed="false">Christmas to New Year</button>
+              <button class="chip" type="button" aria-pressed="true">Jan</button>
+              <button class="chip" type="button" aria-pressed="false">Feb</button>
+              <button class="chip" type="button" aria-pressed="false">Mar</button>
+              <button class="chip" type="button" aria-pressed="false">Not sure yet</button>
+            </div>
+          </div>
+          <div class="stack" style="gap: 10px">
+            <span class="lab">Who is travelling?</span>
+            <div class="rowx" style="gap: 12px 24px">
+              <span class="rowx" style="gap: 10px"><span class="meta" id="lab-adults" style="color: var(--text)">Adults</span><span class="stepper" role="group" aria-labelledby="lab-adults" data-min="1" data-max="20"><button type="button" data-step="-1" aria-label="One adult fewer">−</button><output id="enq-adults" aria-live="polite">2</output><button type="button" data-step="1" aria-label="One adult more">+</button></span></span>
+              <span class="rowx" style="gap: 10px"><span class="meta" id="lab-children" style="color: var(--text)">Children</span><span class="stepper" role="group" aria-labelledby="lab-children" data-min="0" data-max="10"><button type="button" data-step="-1" aria-label="One child fewer">−</button><output id="enq-children" aria-live="polite">0</output><button type="button" data-step="1" aria-label="One child more">+</button></span></span>
+            </div>
+          </div>
+          <div class="stack" style="gap: 10px">
+            <span class="lab" id="lab-level">Hotel level</span>
+            <div class="rowx" role="group" aria-labelledby="lab-level" id="enq-level">
+              <button class="chip" type="button" aria-pressed="true">Budget</button>
+              <button class="chip" type="button" aria-pressed="false">3-star</button>
+              <button class="chip" type="button" aria-pressed="false">Luxury</button>
+            </div>
+          </div>
+          <button class="btn btn-primary full" type="button" id="to-step2">Next</button>
+        </div>
+        <div id="step2" class="stack" style="gap: 20px" hidden>
+          <span class="cap" id="step2-cap" tabindex="-1">Step 2 of 2</span>
+          <div class="field"><label for="enq-name">Your name</label><input class="input" id="enq-name" name="name" autocomplete="name" aria-describedby="enq-name-help"><span class="help" id="enq-name-help" hidden></span></div>
+          <div class="field"><label for="enq-phone">Phone</label><input class="input" id="enq-phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="10-digit mobile number" aria-describedby="enq-phone-help"><span class="help" id="enq-phone-help">We use it only to send your quote.</span></div>
+          <div class="stack" style="gap: 10px">
+            <span class="lab" id="lab-reply">How should we reply?</span>
+            <div class="rowx" role="group" aria-labelledby="lab-reply" data-single>
+              <button class="chip" type="button" aria-pressed="true">Reply on WhatsApp</button>
+              <button class="chip" type="button" aria-pressed="false">Call me</button>
+            </div>
+          </div>
+          <button class="btn btn-primary full" type="submit">Get my quote</button>
+          <p class="meta">No payment needed to enquire. You get a written quote first.</p>
+          <button class="btn btn-text" type="button" id="to-step1" style="justify-self: start">Back to step 1</button>
+        </div>
+        <div id="sent" class="stack" hidden>
+          <span class="stamp" id="sent-cap" tabindex="-1"><i></i><span>Prototype</span><span class="m">Nothing was sent</span></span>
+          <h3 class="t-card">This is where the thank-you goes</h3>
+          <p>On the live site your enquiry reaches our team at this point, and you see when to expect your written quote. Here, what you typed has stayed on this page.</p>
+          <button class="btn btn-secondary" type="button" id="again" style="justify-self: start">Start again</button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot dark">
+  <div class="wrap">
+    <img src="logo/logo-white-600.png" alt="Detox Hospitality" width="600" height="306" loading="lazy">
+    <p>A prototype of the new trip page, made for testing. It is not the live site, it sends nothing, and search engines are asked not to list it.</p>
+    <p><a href="index.html">What to try on this prototype</a></p>
+  </div>
+</footer>
+
+<div class="contact" id="contactBar" aria-hidden="true" inert>
+  <div class="wrap">
+    <div class="p"><span>Per person from</span><b class="js-price">₹8,799</b></div>
+    <div class="acts">
+      <button class="btn btn-wa" type="button" aria-label="WhatsApp us" data-inert="On the live site this opens WhatsApp with the trip's name already written."><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 2C8.268 2 2 8.268 2 16c0 2.49.648 4.829 1.783 6.858L2 30l7.338-1.762A13.93 13.93 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2Zm7.406 19.594c-.308.867-1.52 1.587-2.5 1.796-.665.14-1.533.252-4.455-.957-3.738-1.527-6.148-5.33-6.334-5.576-.18-.246-1.506-2.008-1.506-3.828 0-1.82.953-2.71 1.29-3.08a1.36 1.36 0 0 1 .985-.462c.246 0 .491.005.706.014.227.01.531-.086.831.634.308.738 1.048 2.558 1.14 2.743.092.185.153.4.03.646-.12.246-.18.4-.358.615-.18.215-.378.48-.539.644-.18.18-.367.376-.158.737.21.36.93 1.533 1.996 2.483 1.372 1.222 2.53 1.6 2.889 1.78.358.18.567.154.776-.092.215-.246.92-1.075 1.165-1.443.246-.368.491-.308.831-.185.34.123 2.157 1.018 2.527 1.203.37.185.615.277.706.43.092.154.092.893-.216 1.76Z"/></svg><span>WhatsApp<span class="wide-only"> us</span></span></button>
+      <a class="btn btn-primary" href="#enquire">Enquire</a>
+    </div>
+  </div>
+</div>
+
+<script src="data/route-kashmir-snow-weekend.js"></script>
+<script src="js/site.js"></script>
+<script src="js/route.js"></script>
+<script src="js/trip.js"></script>
+</body>
+</html>
