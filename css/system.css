@@ -66,10 +66,12 @@ em { font-style: italic; }
 .proto .stamp { color: var(--on-navy); }
 .proto .stamp > i { background: var(--mark-lit); }
 .proto a { color: var(--on-navy); padding-block: 8px; }
-.proto .sw { margin-left: auto; display: flex; flex-wrap: wrap; gap: 8px; }
-.proto button { height: 40px; padding: 0 14px; border-radius: 9999px; border: 1px solid var(--on-navy-muted); background: transparent; color: var(--on-navy); font: 500 13px/1 var(--sans); cursor: pointer; white-space: nowrap; }
-.proto button[aria-pressed="true"] { background: var(--on-navy); color: var(--navy-deep); border-color: var(--on-navy); }
-.only-fine { display: none; }
+/* Only when a tester's address asks for motion or smooth scrolling off: the strip says so and offers the way back. */
+.proto .sw { margin-left: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 0 12px; color: var(--on-navy); }
+.links { display: flex; flex-wrap: wrap; gap: 0 24px; font-size: 15px; line-height: 1.5; }
+.links a { display: inline-block; padding-block: 10px; }
+/* A place a link jumps to, or a line the page moves the reader to, takes the keyboard's place without a ring: it cannot be pressed. */
+[tabindex="-1"]:focus { outline: none; }
 
 /* Header */
 .site-head { height: 64px; display: flex; align-items: center; }
@@ -305,7 +307,6 @@ details.acc ul { display: grid; gap: 8px; padding: 0 0 18px; max-width: 68ch; fo
   .btn-text:hover { text-decoration-color: var(--mark); }
   .trip:hover .shot img { transform: scale(1.04); }
   .has-ptag .trip .tag { opacity: 0; }
-  .only-fine { display: inline-block; }
 }
 
 /* Three steps, and the start page's two doors */
@@ -329,7 +330,7 @@ details.acc ul { display: grid; gap: 8px; padding: 0 0 18px; max-width: 68ch; fo
 .band h2 { color: var(--on-navy); }
 .band .rowx { margin-top: 12px; }
 
-/* Smooth scrolling, when the tester switches it on (laptops only) */
+/* Smooth scrolling (laptops only): what its library asks the page to set */
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }

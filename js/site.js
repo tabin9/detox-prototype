@@ -1,14 +1,27 @@
 // Detox prototype: what every page shares.
-// The test strip's two switches (motion, smooth scrolling), the slow reveal, the contact bar that docks,
+// Motion and smooth scrolling (both on, with no switch for visitors), the slow reveal, the contact bar that docks,
 // the pointer's label, and buttons that do nothing here on purpose.
 (function () {
   var root = document.documentElement;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
   var fine = window.matchMedia('(hover: hover) and (pointer: fine)');
+  // A phone held sideways is too low for the held scenes, so there the pages stand still.
+  var low = window.matchMedia('(max-height: 520px) and (orientation: landscape)');
   var one = function (s, el) { return (el || document).querySelector(s); };
   var all = function (s, el) { return Array.prototype.slice.call((el || document).querySelectorAll(s)); };
-  function keep(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* private window: carry on without it */ } }
-  function kept(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+
+  // Decided on 18 November 2026: visitors get no switch for motion or for smooth scrolling, and both are on.
+  // On the finished site they become two switches in the Studio. Until then a tester can see either one off by adding
+  // ?motion=off or ?smooth=off to the address (the start page has links that do it). Nothing is remembered.
+  var asked = { motionOff: false, smoothOff: false };
+  try {
+    var query = new URLSearchParams(window.location.search);
+    asked.motionOff = query.get('motion') === 'off';
+    asked.smoothOff = query.get('smooth') === 'off';
+  } catch (e) { /* a very old browser: both simply stay on */ }
+  // Earlier copies of this prototype remembered the tester's two switches. Forget them, or a page could stand still
+  // for ever with no switch left to bring it back.
+  try { localStorage.removeItem('detox-proto-still'); localStorage.removeItem('detox-proto-smooth'); } catch (e) { /* private window */ }
 
   var stillListeners = [], scrollListeners = [];
   var D = window.Detox = {
@@ -43,49 +56,44 @@
   }
   function requestTick() { if (!ticking) { ticking = true; requestAnimationFrame(tick); } }
 
-  // 1. Motion on or off. With it off, every page is the same page standing still.
-  var stillBtn = one('#stillBtn');
-  function setStill(on, remember) {
+  // 1. Motion. It is on, unless the visitor's own device asks for less motion, the screen is a phone held sideways,
+  //    or the tester's address says off. Without it every page is the same page standing still.
+  function wantStill() { return asked.motionOff || reduce.matches || low.matches; }
+  function setStill(on) {
     D.still = on;
     root.classList.toggle('still', on);
     root.classList.toggle('has-ptag', !on && fine.matches);
-    if (stillBtn) { stillBtn.setAttribute('aria-pressed', on ? 'true' : 'false'); stillBtn.textContent = on ? 'Motion is off' : 'Motion is on'; }
     for (var i = 0; i < stillListeners.length; i++) stillListeners[i](on);
-    if (remember) keep('detox-proto-still', on ? '1' : '0');
-    if (on && lenis) setSmooth(false, false);
+    syncSmooth();
     requestTick();
   }
-  if (stillBtn) stillBtn.addEventListener('click', function () { setStill(!D.still, true); });
 
-  // 2. Smooth wheel scrolling, laptops only, to be judged with the switch. Phones always keep their own scroll.
-  var smoothBtn = one('#smoothBtn');
+  // 2. Smooth wheel scrolling. It is on wherever there is a real pointer (laptops), and never where the pages stand
+  //    still. Phones always keep their own scroll. If the small library cannot be fetched, the page scrolls the usual way.
   var lenis = null, lenisFrame = 0, lenisLoading = false;
   var LENIS = 'https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js';
-  function runLenis() {
+  function wantSmooth() { return !asked.smoothOff && !D.still && fine.matches; }
+  function startLenis() {
+    if (lenis || !wantSmooth() || !window.Lenis) return;
     lenis = new window.Lenis({ lerp: 0.1, smoothWheel: true });
     (function loop(time) { if (!lenis) return; lenis.raf(time); lenisFrame = requestAnimationFrame(loop); })(performance.now());
   }
-  function setSmooth(on, remember) {
-    if (smoothBtn) { smoothBtn.setAttribute('aria-pressed', on ? 'true' : 'false'); smoothBtn.textContent = on ? 'Smooth scrolling is on' : 'Smooth scrolling is off'; }
-    if (remember) keep('detox-proto-smooth', on ? '1' : '0');
-    if (!on) {
+  function syncSmooth() {
+    if (!wantSmooth()) {
       if (lenis) { cancelAnimationFrame(lenisFrame); lenis.destroy(); lenis = null; }
       return;
     }
-    if (!fine.matches || D.still || lenis) return;
-    if (window.Lenis) { runLenis(); return; }
+    if (lenis) return;
+    if (window.Lenis) { startLenis(); return; }
     if (lenisLoading) return;
     lenisLoading = true;
     var s = document.createElement('script');
     s.src = LENIS;
-    s.onload = function () { lenisLoading = false; if (smoothBtn && smoothBtn.getAttribute('aria-pressed') === 'true' && !D.still) runLenis(); };
-    s.onerror = function () { lenisLoading = false; setSmooth(false, false); say('Smooth scrolling could not load. The page scrolls the usual way.'); };
+    s.async = true;
+    s.onload = function () { lenisLoading = false; startLenis(); };
+    s.onerror = function () { lenisLoading = false; };
     document.head.appendChild(s);
   }
-  if (smoothBtn) smoothBtn.addEventListener('click', function () {
-    if (D.still) { say('Switch motion on first.'); return; }
-    setSmooth(smoothBtn.getAttribute('aria-pressed') !== 'true', true);
-  });
 
   // 3. Buttons that would call, message or send on the real site do nothing here, and say so.
   document.addEventListener('click', function (e) {
@@ -93,6 +101,24 @@
     if (!el) return;
     e.preventDefault();
     say(el.getAttribute('data-inert') || 'In the prototype this button does nothing.');
+  });
+
+  // 3b. Links to a place on the same page. While a glide is still finishing, the browser's own jump would be undone
+  //     by the glide's next step, so the glide's own engine is asked to go there: gliding when the place is near,
+  //     at once when it is far (a long glide would fast-forward through the held scenes).
+  document.addEventListener('click', function (e) {
+    if (!lenis || e.defaultPrevented || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    var a = e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    var id = a ? a.getAttribute('href').slice(1) : '';
+    var el = id ? document.getElementById(id) : null;
+    if (!el) return;
+    e.preventDefault();
+    var far = Math.abs(el.getBoundingClientRect().top) > window.innerHeight * 2.5;
+    lenis.scrollTo(el, { immediate: far || a.classList.contains('skip'), duration: 0.9 });
+    // What the browser's own jump would also have done: the address shows the place, and the keyboard carries on from it.
+    try { window.history.replaceState(null, '', '#' + id); } catch (err) { /* a page opened from a folder may refuse */ }
+    if (!el.hasAttribute('tabindex')) el.setAttribute('tabindex', '-1');
+    el.focus({ preventScroll: true });
   });
 
   // 4. Slow reveal. A headline rises into place line by line and a photograph unveils, once.
@@ -210,28 +236,36 @@
     D.placeTag = function () {};
   }
 
-  // Start once every page script has added its parts.
-  // A phone held sideways is too low for the held scenes, so there the pages stand still.
-  var low = window.matchMedia('(max-height: 520px) and (orientation: landscape)');
-  function wantStill() {
-    var choice = kept('detox-proto-still');
-    return low.matches || (choice === null ? reduce.matches : choice === '1');
+  // 7. For the tester only. When the address asks for motion or smooth scrolling off, the dark strip says so, offers
+  //    the way back, and the links to the prototype's other pages carry the same wish along.
+  function testNote() {
+    if (!asked.motionOff && !asked.smoothOff) return;
+    var wish = (asked.motionOff ? ['motion=off'] : []).concat(asked.smoothOff ? ['smooth=off'] : []).join('&');
+    all('a[href]').forEach(function (a) {
+      var m = /^([a-z-]+\.html)(#.*)?$/.exec(a.getAttribute('href'));
+      if (m) a.setAttribute('href', m[1] + '?' + wish + (m[2] || ''));
+    });
+    var strip = one('.proto .wrap');
+    if (!strip) return;
+    var note = document.createElement('span'), back = document.createElement('a');
+    note.className = 'sw';
+    note.appendChild(document.createTextNode(asked.motionOff ? 'Motion is off on this visit.' : 'Smooth scrolling is off on this visit.'));
+    back.href = window.location.pathname.split('/').pop() || 'index.html';
+    back.textContent = 'Back to normal';
+    note.appendChild(back);
+    strip.appendChild(note);
   }
-  var onLow = function () { setStill(wantStill(), false); };
-  if (low.addEventListener) low.addEventListener('change', onLow); else low.addListener(onLow);
+
+  // Start once every page script has added its parts. The device can change its mind while the page is open
+  // (the phone is turned, the setting for less motion is switched, a mouse is plugged in), and the page follows.
+  var follow = function () { setStill(wantStill()); };
+  [reduce, low, fine].forEach(function (m) { if (m.addEventListener) m.addEventListener('change', follow); else m.addListener(follow); });
   document.addEventListener('DOMContentLoaded', function () {
-    setStill(wantStill(), false);
-    if (kept('detox-proto-smooth') === '1') setSmooth(true, false);
+    testNote();
+    setStill(wantStill());
     window.addEventListener('scroll', requestTick, { passive: true });
     window.addEventListener('resize', requestTick);
     window.addEventListener('load', requestTick);
     requestTick();
-  });
-  // Laptop shortcuts for the tester: M for motion, S for smooth scrolling.
-  document.addEventListener('keydown', function (e) {
-    if (e.ctrlKey || e.metaKey || e.altKey) return;
-    if (e.target.closest && e.target.closest('input, textarea, select')) return;
-    if (e.key === 'm' || e.key === 'M') { if (stillBtn) stillBtn.click(); }
-    if (e.key === 's' || e.key === 'S') { if (smoothBtn) smoothBtn.click(); }
   });
 })();

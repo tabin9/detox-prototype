@@ -11,7 +11,7 @@ Nothing here sends anything. The enquiry form, the WhatsApp buttons and the menu
 ## What is in here
 
 - `css/system.css`: the colours, type and parts of the design system
-- `js/site.js`: what every page shares (the motion switch, the slow reveal, the contact bar, the pointer's label)
+- `js/site.js`: what every page shares (motion and smooth scrolling, the slow reveal, the contact bar, the pointer's label)
 - `js/route.js`: the route that draws itself on the map
 - `js/home.js`: the homepage's three moving parts
 - `js/trip.js`: the price levels and the two-step enquiry
@@ -24,4 +24,8 @@ There is no build step. The pages open straight from the folder.
 - Rivers and lakes on the map: © OpenStreetMap contributors, under the Open Database Licence.
 - Photographs: from Pexels, Unsplash and Pixabay, used under their licences.
 - Typefaces: Fraunces, DM Sans and DM Mono, under the SIL Open Font Licence, served by Google Fonts.
-- Smooth scrolling, only when a tester switches it on: Lenis, under the MIT licence, loaded from jsDelivr.
+- Smooth scrolling, on laptops only: Lenis, under the MIT licence, loaded from jsDelivr.
+
+## Motion and smooth scrolling
+
+Both are on and there is no switch for visitors. A device that asks for less motion gets the pages standing still. To see either one off, add `?motion=off` or `?smooth=off` to a page's address.
